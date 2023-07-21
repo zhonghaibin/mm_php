@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,8 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Builder::morphUsingUuids();
         Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->morphs('tokenable');
             $table->string('name');
             $table->string('token', 64)->unique();
