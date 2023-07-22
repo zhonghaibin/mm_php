@@ -35,5 +35,5 @@ jobs:
                /usr/local/bin/docker stop mm_php
                /usr/local/bin/docker rm mm_php
                /usr/local/bin/docker run --name=mm_php -d -p 8000:8000  zhonghaibin/mm_php:1.0
-               /usr/local/bin/docker cp /volume1/docker/web/mm_php/.env mm_php:/app
+               /usr/local/bin/docker cp /volume1/docker/web/mm_php/.env mm_php:/app/.env
                
