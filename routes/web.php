@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('article/{id}', [HomeController::class, 'article'])->name('article');
+Route::get('page/{id}', [HomeController::class, 'page'])->name('page');
+Route::get('category/{id}', [HomeController::class, 'category'])->name('category');
+Route::get('tag/{id}', [HomeController::class, 'tag'])->name('tag');
+Route::get('search', [HomeController::class, 'search'])->name('search');
+Route::get('archive', [HomeController::class, 'archive'])->name('archive');
