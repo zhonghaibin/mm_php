@@ -46,20 +46,6 @@
                         <div class="markdown-body article-content" style="word-wrap:break-word;">
                             {!! $article->feed->html !!}
                         </div>
-                            <div class="text-center">
-                                <a class="btn bg-red" data-toggle="collapse" href="#reward" role="button"
-                                   aria-expanded="false" aria-controls="reward">赏</a>
-                            </div>
-                            <div class="collapse text-center " id="reward">
-                                <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4 text-center">
-                                        <img  src="{{asset('images/buymeacoffee.jpg')}}" alt="微信打赏"  class="img-responsive">
-                                        <span class="help-block">微信打赏</span></div>
-                                    <div class="col-md-4"></div>
-                                </div>
-
-                            </div>
                             <div class="hr-line-dashed"></div>
 
                         <div class="social-share text-center"

@@ -18,7 +18,7 @@
                     </a>
                     <div class="small m-b-xs">
                         <strong>{{$article->author}}</strong>&nbsp;&nbsp;<span class="text-muted"><i
-                                class="fa fa-clock-o"></i>&nbsp;最后更新于&nbsp;{{\App\Helpers\Extensions\Tool::transformTime($article->updated_at)}}&nbsp;</span>
+                                class="fa fa-clock-o"></i>&nbsp;最后更新于&nbsp;{{\App\Helpers\Extensions\Tool::transformTime($article->feed->updated_at)}}&nbsp;</span>
                     </div>
                     <div class="description">
                         <p style="word-wrap:break-word;"></p>
@@ -55,6 +55,6 @@
                 </div>
             </div>
         @endforeach
-        {{ $articles->links() }}
+        {{ $articles->links('vendor.pagination.simple-default') }}
     </div>
 @stop
