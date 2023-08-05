@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('title', '搜索')
-@section('keywords', "")
-@section('description',"")
+@section('keywords', $config['site_keywords'])
+@section('description', $config['site_description'])
 @section('content')
     <div class="col-md-8">
         @if(blank($articles))

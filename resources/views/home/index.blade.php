@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
-@section('title', '蜜蜜妈妈')
-@section('keywords', '')
-@section('description', '')
+@section('title', $config['site_title'])
+@section('keywords', $config['site_keywords'])
+@section('description', $config['site_description'])
 @section('content')
     <div class="col-md-8">
         @foreach($articles as $article)

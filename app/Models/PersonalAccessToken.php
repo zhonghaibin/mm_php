@@ -8,7 +8,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Laravel\Sanctum\PersonalAccessToken as Model;
 
 /**
  * Class PersonalAccessToken
@@ -24,7 +23,7 @@ use Laravel\Sanctum\PersonalAccessToken as Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-class PersonalAccessToken extends Model
+class PersonalAccessToken extends Base
 {
     use HasUuids;
 

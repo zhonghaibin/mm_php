@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class FailedJob
@@ -20,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $exception
  * @property Carbon $failed_at
  */
-class FailedJob extends Model
+class FailedJob extends Base
 {
     protected $table = 'failed_jobs';
 

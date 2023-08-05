@@ -9,6 +9,7 @@ use App\Models\ArticleTag;
 use App\Models\ArticleTagRel;
 use App\Models\Category;
 use App\Models\Nav;
+use App\Models\Page;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -32,6 +33,7 @@ class HomeController extends Controller
             ->get();
         $top_article_list = Article::query()->select('id', 'title')
             ->orderBy('rank', 'desc')
+            ->where(['status' => 1])
             ->limit(10)
             ->inRandomOrder()
             ->get();
@@ -137,8 +139,12 @@ class HomeController extends Controller
                 ->whereBetween('created_at', [$start, $end])
                 ->orderBy('created_at', 'desc')
                 ->get();
+
             $v->articles = $articles;
         }
+
+        //        $dd = collect($archive)->toArray();
+        //        dd($dd);
 
         return view('home.archive', compact('archive'));
     }
@@ -159,5 +165,17 @@ class HomeController extends Controller
         $articles->count = Article::query()->where($map)->count();
 
         return view('home.search', compact('articles'));
+    }
+
+    public function page($id, Request $request)
+    {
+        $page = Page::query()->where('id', $id)->first();
+        $key = 'pageRequestList:'.$id.':'.$request->ip();
+        if (! Cache::has($key)) {
+            Cache::put($key, $request->ip(), 60);
+            $page->increment('click');
+        }
+
+        return view('home.page', compact('page'));
     }
 }

@@ -4,11 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Feed extends Model
+class Feed extends Base
 {
     use HasUuids,HasFactory;
+
+    protected $fillable = [
+        'target_type',
+        'target_id',
+        'content',
+        'html',
+    ];
 
     const TYPE_ARTICLE = 0;
 

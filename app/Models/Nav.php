@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
 
-class Nav extends Model
+class Nav extends Base
 {
     use HasUuids;
+
+    protected $fillable = ['type', 'parent_id', 'name', 'url', 'sort', 'status'];
 
     const TYPE
         = [
@@ -28,5 +29,24 @@ class Nav extends Model
 
     const TYPE_LINK = 4;     // 链接（直接添加链接）
 
+    const LIMIT_NUM = 14;    // 最大菜单数
+
     const STATUS_DISPLAY = 1;
+
+    const STATUS_HIDE = 0;
+
+    public function getTreeIndex($id = 0, $deep = 0)
+    {
+        static $tempArr = [];
+        $data = $this->query()->where('parent_id', $id)->orderBy('sort', 'asc')
+            ->get();
+        foreach ($data as $k => $v) {
+            $v->deep = $deep;
+            $v->name = str_repeat('&nbsp;&nbsp;', $v->deep * 2).'|--'.$v->name;
+            $tempArr[] = $v;
+            $this->getTreeIndex($v->id, $deep + 1);
+        }
+
+        return $tempArr;
+    }
 }

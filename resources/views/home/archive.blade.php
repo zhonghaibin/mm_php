@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('title', '文章归档')
-@section('keywords', "")
-@section('description',"")
+@section('keywords', $config['site_keywords'])
+@section('description', $config['site_description'])
 @section('content')
     <div class="col-md-8">
         <ul class="timeline">
@@ -37,7 +37,7 @@
                 </li>
             @endforeach
             <div class="text-center">
-                {{ $archive->links() }}
+                {{ $archive->links('vendor.pagination.simple-default') }}
             </div>
         </ul>
     </div>
