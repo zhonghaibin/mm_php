@@ -9,9 +9,11 @@ COPY --from=roadrunner /usr/bin/rr /app/rr
 # 将项目文件中的内容复制到 /app 这个目录下面
 COPY . /app
 
-RUN php -r "file_exists('.env') || copy('.env.example', '.env');" && \
-    composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist && \
-    php artisan key:generate && \
+#RUN php -r "file_exists('.env') || copy('.env.example', '.env');" && \
+#    composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist && \
+#    php artisan key:generate && \
+#    chmod -R 777 storage bootstrap/cache
+RUN php artisan key:generate && \
     chmod -R 777 storage bootstrap/cache
 EXPOSE 8000
 
