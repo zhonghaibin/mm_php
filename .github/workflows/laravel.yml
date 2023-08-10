@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build frontend
-        run: npm run production
+        run: npm run dev
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag zhonghaibin/mm_php:1.0
       - name: Docker Login
