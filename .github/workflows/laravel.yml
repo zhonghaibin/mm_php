@@ -3,7 +3,7 @@ name: Laravel-docker
 on:
   push:
     branches: [ "main" ]
-    
+
   workflow_dispatch:
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
             password: ${{secrets.DOCKER_PASSWORD}}
       - name: Push Docker images
         run: docker push  zhonghaibin/mm_php:1.0
-        
+
       - name: SSH command
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -52,6 +52,6 @@ jobs:
                /usr/local/bin/docker pull zhonghaibin/mm_php:1.0
                /usr/local/bin/docker stop mm_php
                /usr/local/bin/docker rm mm_php
-               /usr/local/bin/docker run --name=mm_php -d -p 8000:8000  zhonghaibin/mm_php:1.0
+               /usr/local/bin/docker run --name=mm_php --link=mysql -d -p 8000:8000  zhonghaibin/mm_php:1.0
                /usr/local/bin/docker cp /volume1/docker/web/mm_php/.env mm_php:/app/.env
-               
+
